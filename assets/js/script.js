@@ -1,0 +1,5 @@
+// 
+
+$('.display').hide();
+
+$('.display').show();
