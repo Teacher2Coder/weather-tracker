@@ -11,6 +11,8 @@ body {
 
 main {
     display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .side-nav-custom {

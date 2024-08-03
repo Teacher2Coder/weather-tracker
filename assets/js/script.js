@@ -1,5 +1,5 @@
 // 
 
-$('.display').hide();
+$('.display-main').hide();
 
-$('.display').show();
+$('.display-main').show();

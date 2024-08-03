@@ -30,7 +30,7 @@
         </nav>
     </header>
 
-    <main class="container-fluid bg-secondary">
+    <main class="container-fluid bg-secondary main-content">
         <div class="container side-nav-custom">
             <ul class="flex-column city">
                 <li class="nav-item">
@@ -58,72 +58,74 @@
 
         <div class="card bg-dark display">
             <h2 class="card-header color-light"> Now showing weather data for: <span id="city-display"></span></h2>
-            <div class="card bg-secondary current">
-                <h5 class="card-title current-title">Current Weather</h5>
-                <div class="container card-body current-flex">
-                    <div class="col weather-data">
-                        <ul class="current-weather">
-                            <li>
-                                <p>Temperature: <span id="current-temp"></span></p>
-                            </li>
-                            <li>
-                                <p>Wind: <span id="current-wind"></span></p>
-                            </li>
-                            <li>
-                                <p>Humidity: <span id="current-humidity"></span></p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col weather-icon-current">
-                        <p>☀️</p>
-                    </div>
-                </div>
-            </div>
-            <h5 class="forecast-title">5 Day Forecast</h5>
-            <div class="container-fluid forecast">
-                <div class="card bg-secondary future">
-                    <div class="card-body">
-                        <h6>1 Day</h6>
-                        <p>Temp: <span></span></p>
-                        <p>Wind: <span></span></p>
-                        <p>Hum: <span></span></p>
-                        <p class="forecast-icon">☀️</p>
+            <div class="display-main">
+                <div class="card bg-secondary current">
+                    <h5 class="card-title current-title">Current Weather</h5>
+                    <div class="container card-body current-flex">
+                        <div class="col weather-data">
+                            <ul class="current-weather">
+                                <li>
+                                    <p>Temperature: <span id="current-temp"></span></p>
+                                </li>
+                                <li>
+                                    <p>Wind: <span id="current-wind"></span></p>
+                                </li>
+                                <li>
+                                    <p>Humidity: <span id="current-humidity"></span></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col weather-icon-current">
+                            <p>☀️</p>
+                        </div>
                     </div>
                 </div>
-                <div class="card bg-secondary future">
-                    <div class="card-body">
-                        <h6>2 Day</h6>
-                        <p>Temp: <span></span></p>
-                        <p>Wind: <span></span></p>
-                        <p>Hum: <span></span></p>
-                        <p class="forecast-icon">☀️</p>
+                <h5 class="forecast-title">5 Day Forecast</h5>
+                <div class="container-fluid forecast">
+                    <div class="card bg-secondary future">
+                        <div class="card-body">
+                            <h6>1 Day</h6>
+                            <p>Temp: <span></span></p>
+                            <p>Wind: <span></span></p>
+                            <p>Hum: <span></span></p>
+                            <p class="forecast-icon">☀️</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card bg-secondary future">
-                    <div class="card-body">
-                        <h6>3 Day</h6>
-                        <p>Temp: <span></span></p>
-                        <p>Wind: <span></span></p>
-                        <p>Hum: <span></span></p>
-                        <p class="forecast-icon">☀️</p>
+                    <div class="card bg-secondary future">
+                        <div class="card-body">
+                            <h6>2 Day</h6>
+                            <p>Temp: <span></span></p>
+                            <p>Wind: <span></span></p>
+                            <p>Hum: <span></span></p>
+                            <p class="forecast-icon">☀️</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card bg-secondary future">
-                    <div class="card-body">
-                        <h6>4 Day</h6>
-                        <p>Temp: <span></span></p>
-                        <p>Wind: <span></span></p>
-                        <p>Hum: <span></span></p>
-                        <p class="forecast-icon">☀️</p>
+                    <div class="card bg-secondary future">
+                        <div class="card-body">
+                            <h6>3 Day</h6>
+                            <p>Temp: <span></span></p>
+                            <p>Wind: <span></span></p>
+                            <p>Hum: <span></span></p>
+                            <p class="forecast-icon">☀️</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card bg-secondary future">
-                    <div class="card-body">
-                        <h6>5 Day</h6>
-                        <p>Temp: <span></span></p>
-                        <p>Wind: <span></span></p>
-                        <p>Hum: <span></span></p>
-                        <p class="forecast-icon">☀️</p>
+                    <div class="card bg-secondary future">
+                        <div class="card-body">
+                            <h6>4 Day</h6>
+                            <p>Temp: <span></span></p>
+                            <p>Wind: <span></span></p>
+                            <p>Hum: <span></span></p>
+                            <p class="forecast-icon">☀️</p>
+                        </div>
+                    </div>
+                    <div class="card bg-secondary future">
+                        <div class="card-body">
+                            <h6>5 Day</h6>
+                            <p>Temp: <span></span></p>
+                            <p>Wind: <span></span></p>
+                            <p>Hum: <span></span></p>
+                            <p class="forecast-icon">☀️</p>
+                        </div>
                     </div>
                 </div>
             </div>
