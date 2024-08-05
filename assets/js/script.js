@@ -120,7 +120,7 @@ function handleQuickSelect(event) {
 }
 
 function getGeo(city, state) {
-    const geolocateURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city},${state}&appid=c7a9b3b1a0987d84b297de83399a2f5e`
+    const geolocateURL = `https://api.openweathermap.org/geo/1.0/direct?q=${city},${state}&appid=c7a9b3b1a0987d84b297de83399a2f5e`
 
     // fetches the lat and long for the searched city
     fetch (geolocateURL)
@@ -147,7 +147,7 @@ function getGeo(city, state) {
 
 function getData(lat, long) {
 
-    const apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&cnt=50&appid=c7a9b3b1a0987d84b297de83399a2f5e`
+    const apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&cnt=50&appid=c7a9b3b1a0987d84b297de83399a2f5e`
 
     // fetches the weather data and displays it
     fetch (apiURL)
