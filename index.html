@@ -37,27 +37,74 @@
                     <h3>Search for a City:</h3>
                 </li>
                 <li class="nav item input-group mb-3">
-                    <input type="text" class="form-control" placeholder="City Name">
+                    <input type="text" class="form-control" id="searchbar" placeholder="City Name">
+                    <select class="form-select" aria-label="state-selector" id="searchbar-state">
+                        <option selected>State</option>
+                        <option value="Alabama">Alabama</option>
+                        <option value="Alaska">Alaska</option>
+                        <option value="Arizona">Arizona</option>
+                        <option value="Arkansas">Arkansas</option>
+                        <option value="California">California</option>
+                        <option value="Colorado">Colorado</option>
+                        <option value="Connecticut">Connecticut</option>
+                        <option value="Delaware">Delaware</option>
+                        <option value="Florida">Florida</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Hawaii">Hawaii</option>
+                        <option value="Idaho">Idaho</option>
+                        <option value="Illinois">Illinois</option>
+                        <option value="Indiana">Indiana</option>
+                        <option value="Iowa">Iowa</option>
+                        <option value="Kansas">Kansas</option>
+                        <option value="Kentucky">Kentucky</option>
+                        <option value="Louisiana">Louisiana</option>
+                        <option value="Maine">Maine</option>
+                        <option value="Maryland">Maryland</option>
+                        <option value="Massachusetts">Massachusetts</option>
+                        <option value="Michigan">Michigan</option>
+                        <option value="Minnesota">Minnesota</option>
+                        <option value="Mississippi">Mississippi</option>
+                        <option value="Missouri">Missouri</option>
+                        <option value="Montana">Montana</option>
+                        <option value="Nebraska">Nebraska</option>
+                        <option value="Nevada">Nevada</option>
+                        <option value="New Hampshire">New Hampshire</option>
+                        <option value="New Jersey">New Jersey</option>
+                        <option value="New Mexico">New Mexico</option>
+                        <option value="New York">New York</option>
+                        <option value="North Carolina">North Carolina</option>
+                        <option value="North Dakota">North Dakota</option>
+                        <option value="Ohio">Ohio</option>
+                        <option value="Oklahoma">Oklahoma</option>
+                        <option value="Oregon">Oregon</option>
+                        <option value="Pennsylvania">Pennsylvania</option>
+                        <option value="Rhode Island">Rhode Island</option>
+                        <option value="South Carolina">South Carolina</option>
+                        <option value="South Dakota">South Dakota</option>
+                        <option value="Tennessee">Tennessee</option>
+                        <option value="Texas">Texas</option>
+                        <option value="Utah">Utah</option>
+                        <option value="Vermont">Vermont</option>
+                        <option value="Virginia">Virginia</option>
+                        <option value="Washington">Washington</option>
+                        <option value="West Virginia">West Virginia</option>
+                        <option value="Wisconsin">Wisconsin</option>
+                        <option value="Wyoming">Wyoming</option>
+                    </select>
                 </li>
                 <li class="nav-item d-grid gap-2">
                     <button class="btn btn-primary" type="submit" id="city-search">Search</button>
                 </li>
             </ul>
             <div class="flex-column d-grid gap-2 select">
-                <h4>Quick Select:</h4>
-                <button class="btn btn-dark">New York City</button>
-                <button class="btn btn-dark">Philadelphia</button>
-                <button class="btn btn-dark">Orlando</button>
-                <button class="btn btn-dark">Chicago</button>
-                <button class="btn btn-dark">Austin</button>
-                <button class="btn btn-dark">Denver</button>
-                <button class="btn btn-dark">Las Vegas</button>
-                <button class="btn btn-dark">Seattle</button>
+                <h4>Previous Searches:</h4>
+                <div class="flex-column d-grid gap-2" id="quick-btns">
+                </div>
             </div>
         </div>
 
         <div class="card bg-dark display">
-            <h2 class="card-header color-light"> Now showing weather data for: <span id="city-display"></span></h2>
+            <h2 class="card-header color-light" id="city-name"> Now showing weather data for: <span id="city-display"></span></h2>
             <div class="display-main">
                 <div class="card bg-secondary current">
                     <h5 class="card-title current-title">Current Weather</h5>
@@ -65,18 +112,18 @@
                         <div class="col weather-data">
                             <ul class="current-weather">
                                 <li>
-                                    <p>Temperature: <span id="current-temp"></span></p>
+                                    <p id="cur-temp">Temperature: <span id="current-temp"></span></p>
                                 </li>
                                 <li>
-                                    <p>Wind: <span id="current-wind"></span></p>
+                                    <p id="cur-wind">Wind: <span id="current-wind"></span></p>
                                 </li>
                                 <li>
-                                    <p>Humidity: <span id="current-humidity"></span></p>
+                                    <p id="cur-hum">Humidity: <span id="current-humidity"></span></p>
                                 </li>
                             </ul>
                         </div>
                         <div class="col weather-icon-current">
-                            <p>☀️</p>
+                            <img id="cur-icon"></img>
                         </div>
                     </div>
                 </div>
@@ -84,47 +131,47 @@
                 <div class="container-fluid forecast">
                     <div class="card bg-secondary future">
                         <div class="card-body">
-                            <h6>1 Day</h6>
-                            <p>Temp: <span></span></p>
-                            <p>Wind: <span></span></p>
-                            <p>Hum: <span></span></p>
-                            <p class="forecast-icon">☀️</p>
+                            <h6 id="day1">1 Day</h6>
+                            <p id="d1-temp">Temp: </p>
+                            <p id="d1-wind">Wind: </p>
+                            <p id="d1-hum">Hum: </p>
+                            <img class="forecast-icon" id="d1-icon"></img>
                         </div>
                     </div>
                     <div class="card bg-secondary future">
                         <div class="card-body">
-                            <h6>2 Day</h6>
-                            <p>Temp: <span></span></p>
-                            <p>Wind: <span></span></p>
-                            <p>Hum: <span></span></p>
-                            <p class="forecast-icon">☀️</p>
+                            <h6 id="day2">2 Day</h6>
+                            <p id="d2-temp">Temp: </p>
+                            <p id="d2-wind">Wind: </p>
+                            <p id="d2-hum">Hum: </p>
+                            <img class="forecast-icon" id="d2-icon"></img>
                         </div>
                     </div>
                     <div class="card bg-secondary future">
                         <div class="card-body">
-                            <h6>3 Day</h6>
-                            <p>Temp: <span></span></p>
-                            <p>Wind: <span></span></p>
-                            <p>Hum: <span></span></p>
-                            <p class="forecast-icon">☀️</p>
+                            <h6 id="day3">3 Day</h6>
+                            <p id="d3-temp">Temp: </p>
+                            <p id="d3-wind">Wind: </p>
+                            <p id="d3-hum">Hum: </p>
+                            <img class="forecast-icon" id="d3-icon"></img>
                         </div>
                     </div>
                     <div class="card bg-secondary future">
                         <div class="card-body">
-                            <h6>4 Day</h6>
-                            <p>Temp: <span></span></p>
-                            <p>Wind: <span></span></p>
-                            <p>Hum: <span></span></p>
-                            <p class="forecast-icon">☀️</p>
+                            <h6 id="day4">4 Day</h6>
+                            <p id="d4-temp">Temp: </p>
+                            <p id="d4-wind">Wind: </p>
+                            <p id="d4-hum">Hum: </p>
+                            <img class="forecast-icon" id="d4-icon"></img>
                         </div>
                     </div>
                     <div class="card bg-secondary future">
                         <div class="card-body">
-                            <h6>5 Day</h6>
-                            <p>Temp: <span></span></p>
-                            <p>Wind: <span></span></p>
-                            <p>Hum: <span></span></p>
-                            <p class="forecast-icon">☀️</p>
+                            <h6 id="day5">5 Day</h6>
+                            <p id="d5-temp">Temp: </p>
+                            <p id="d5-wind">Wind: </p>
+                            <p id="d5-hum">Hum: </p>
+                            <img class="forecast-icon" id="d5-icon"></img>
                         </div>
                     </div>
                 </div>
