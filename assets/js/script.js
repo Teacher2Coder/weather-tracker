@@ -19,9 +19,9 @@ let quickBtns = $('#quick-btns')
 
 // Current Conditions Slectors
 let cityName = document.querySelector('#city-name');
-let currentTemp = document.querySelector('#cur-temp');
-let currentWind = document.querySelector('#cur-wind');
-let currentHum = document.querySelector('#cur-hum');
+let currentTemp = document.querySelector('#current-temp');
+let currentWind = document.querySelector('#current-wind');
+let currentHum = document.querySelector('#current-hum');
 let currentIcon = document.querySelector('#cur-icon')
 
 // Day 1 selectors
@@ -82,42 +82,38 @@ function renderSearchHistory() {
 function handleDisplayWeather() {
     const city = searchBar.value.trim();
     const state = stateBar.value.trim();
-    
-    // Changes title in the display box
-    cityName.textContent = `Now showing weather data for ${city}, ${state}.`
 
     // gathers data and displays it
     getGeo(city, state);
 
-    // Unhides the display to reveal the weather data
-    $('.display-main').show();
+    if (city !== null || state === "state") {
+        // Unhides the display to reveal the weather data
+        $('.display-main').show();
 
-    // Adds city to search history
-    searchHistoryCity.push(city);
-    localStorage.setItem('city', JSON.stringify(searchHistoryCity));
-    searchHistoryState.push(state);
-    localStorage.setItem('state', JSON.stringify(searchHistoryState));
+        // Adds city to search history
+        searchHistoryCity.push(city);
+        localStorage.setItem('city', JSON.stringify(searchHistoryCity));
+        searchHistoryState.push(state);
+        localStorage.setItem('state', JSON.stringify(searchHistoryState));
 
-    // Clears the search bar
-    searchBar.value = "";
-    stateBar.value = "State";
+        // Clears the search bar
+        searchBar.value = "";
+        stateBar.value = "State";
 
-    // Clears search history so it can be repopulated again
-    let prevList = document.querySelector('#quick-btns')
-    while (prevList.lastElementChild) {
-        prevList.removeChild(prevList.lastElementChild);
+        // Clears search history so it can be repopulated again
+        let prevList = document.querySelector('#quick-btns')
+        while (prevList.lastElementChild) {
+            prevList.removeChild(prevList.lastElementChild);
+        };
+
+        // Renders search history again
+        renderSearchHistory();
     };
-
-    // Renders search history again
-    renderSearchHistory();
 }
 
 function handleQuickSelect(event) {
     const city = event.target.getAttribute('data-city')
     const state = event.target.getAttribute('data-state')
-    
-    // Changes title in the display box
-    cityName.textContent = `Now showing weather data for ${city}, ${state}`
 
     // Gathers data and displays it
     getGeo(city, state);
@@ -130,6 +126,9 @@ function getGeo(city, state) {
     fetch (geolocateURL)
         .then (function (response) {
             if (response.ok) {
+                // Changes title in the display box
+                cityName.textContent = `Now showing weather data for ${city}, ${state}.`
+
                 response.json().then (function (data) {
                     let lat = data[0].lat;
                     let long = data[0].lon;
@@ -148,7 +147,7 @@ function getGeo(city, state) {
 
 function getData(lat, long) {
 
-    const apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=c7a9b3b1a0987d84b297de83399a2f5e`
+    const apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&cnt=50&appid=c7a9b3b1a0987d84b297de83399a2f5e`
 
     // fetches the weather data and displays it
     fetch (apiURL)
@@ -156,46 +155,51 @@ function getData(lat, long) {
             if (response.ok) {
                 response.json().then (function (data) {
                     // Sets current values
-                    currentTemp.textContent = `Temperature: ${data.list[0].main.temp}`;
-                    currentWind.textContent = `Wind: ${data.list[0].wind.speed} m/s`;
-                    currentHum.textContent = `Humidity: ${data.list[0].main.humidity}%`;
+                    currentTemp.textContent = `${data.list[0].main.temp} °F`;
+                    currentWind.textContent = `${data.list[0].wind.speed} mph`;
+                    currentHum.textContent = `${data.list[0].main.humidity}%`;
                     currentIcon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`);
                     currentIcon.setAttribute('alt', data.list[0].weather[0].description);
 
                     // Sets day 1 values
-                    day1Temp.textContent = `Temp: ${data.list[1].main.temp}`;
-                    day1Wind.textContent = `Wind: ${data.list[1].wind.speed} m/s`;
-                    day1Hum.textContent = `Hum: ${data.list[1].main.humidity}%`;
-                    day1Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[1].weather[0].icon}@2x.png`);
-                    day1Icon.setAttribute('alt', data.list[1].weather[0].description);
+                    day1.textContent = dayjs(data.list[7].dt_txt).format('MMM D');
+                    day1Temp.textContent = `${data.list[7].main.temp} °F`;
+                    day1Wind.textContent = `${data.list[7].wind.speed} mph`;
+                    day1Hum.textContent = `${data.list[7].main.humidity}%`;
+                    day1Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[7].weather[0].icon}@2x.png`);
+                    day1Icon.setAttribute('alt', data.list[7].weather[0].description);
 
                     // Sets day 2 values
-                    day2Temp.textContent = `Temp: ${data.list[2].main.temp}`;
-                    day2Wind.textContent = `Wind: ${data.list[2].wind.speed} m/s`;
-                    day2Hum.textContent = `Hum: ${data.list[2].main.humidity}%`;
-                    day2Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[2].weather[0].icon}@2x.png`);
-                    day2Icon.setAttribute('alt', data.list[2].weather[0].description);
+                    day2.textContent = dayjs(data.list[15].dt_txt).format('MMM D');
+                    day2Temp.textContent = `${data.list[15].main.temp} °F`;
+                    day2Wind.textContent = `${data.list[15].wind.speed} mph`;
+                    day2Hum.textContent = `${data.list[15].main.humidity}%`;
+                    day2Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[15].weather[0].icon}@2x.png`);
+                    day2Icon.setAttribute('alt', data.list[15].weather[0].description);
 
                     // Sets day 3 values
-                    day3Temp.textContent = `Temp: ${data.list[3].main.temp}`;
-                    day3Wind.textContent = `Wind: ${data.list[3].wind.speed} m/s`;
-                    day3Hum.textContent = `Hum: ${data.list[3].main.humidity}%`;
-                    day3Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[3].weather[0].icon}@2x.png`);
-                    day3Icon.setAttribute('alt', data.list[3].weather[0].description);
+                    day3.textContent = dayjs(data.list[23].dt_txt).format('MMM D');
+                    day3Temp.textContent = `${data.list[23].main.temp} °F`;
+                    day3Wind.textContent = `${data.list[23].wind.speed} mph`;
+                    day3Hum.textContent = `${data.list[23].main.humidity}%`;
+                    day3Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[23].weather[0].icon}@2x.png`);
+                    day3Icon.setAttribute('alt', data.list[23].weather[0].description);
 
                     // Sets day 4 values
-                    day4Temp.textContent = `Temp: ${data.list[4].main.temp}`;
-                    day4Wind.textContent = `Wind: ${data.list[4].wind.speed} m/s`;
-                    day4Hum.textContent = `Hum: ${data.list[4].main.humidity}%`;
-                    day4Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[4].weather[0].icon}@2x.png`);
-                    day4Icon.setAttribute('alt', data.list[4].weather[0].description);
+                    day4.textContent = dayjs(data.list[31].dt_txt).format('MMM D');
+                    day4Temp.textContent = `${data.list[31].main.temp} °F`;
+                    day4Wind.textContent = `${data.list[31].wind.speed} mph`;
+                    day4Hum.textContent = `${data.list[31].main.humidity}%`;
+                    day4Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[31].weather[0].icon}@2x.png`);
+                    day4Icon.setAttribute('alt', data.list[31].weather[0].description);
 
                     // Sets day 5 values
-                    day5Temp.textContent = `Temp: ${data.list[5].main.temp}`;
-                    day5Wind.textContent = `Wind: ${data.list[5].wind.speed} m/s`;
-                    day5Hum.textContent = `Hum: ${data.list[5].main.humidity}%`;
-                    day5Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[5].weather[0].icon}@2x.png`);
-                    day5Icon.setAttribute('alt', data.list[5].weather[0].description);
+                    day5.textContent = dayjs(data.list[39].dt_txt).format('MMM D');
+                    day5Temp.textContent = `${data.list[39].main.temp} °F`;
+                    day5Wind.textContent = `${data.list[39].wind.speed} mph`;
+                    day5Hum.textContent = `${data.list[39].main.humidity}%`;
+                    day5Icon.setAttribute('src', `https://openweathermap.org/img/wn/${data.list[39].weather[0].icon}@2x.png`);
+                    day5Icon.setAttribute('alt', data.list[39].weather[0].description);
                 }
             )
             } else {
